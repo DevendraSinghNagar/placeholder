@@ -2,59 +2,86 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width initial-scale=1.0">
-	<title>form</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="icon" type="icon/png" href="../.png">
+	<title>Placeholder</title>
+	<style type="text/css">
+        body {
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            font-family: "Arial";
+            color: #666565;
+            background-color: #EAEAEA;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            padding: 50px;
+        }
+        form {
+            background-color: #fff;
+            box-shadow: 5px 5px 9px 5px #CCC;
+            -webkit-box-shadow: 5px 5px 9px 5px #CCC;
+            -moz-box-shadow: 5px 5px 9px 5px #CCC;
+            padding: 25px;
+            border-radius: 8px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+        }
+        .row {
+            margin: 5px 0;
+            clear: both;
+            display: inline-block;
+            width: 100%;
+        }
+        label {
+            float: left;
+            font-size: 14px;
+            line-height: 38px;
+            width: 30%;
+        }
+        .form-input {
+            float: left;
+            width: 70%;
+        }   
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #4CBAA9;
+            font-size: 14px;
+        }
+        input[type="submit"] {
+            background-color: #ACEFE4;
+            border: 2px solid #4CBAA9;
+            font-weight: bold;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body action="">
 	<div class="container">
 		<form action="index.html" method="post" name="contact_form">
             <div class="row">
-                <label class="required" for="name">Full name:</label>
+                <label for="name">Full name:</label>
                 <div class="form-input">
-                    <input id="name" name="name" size="30" type="text" value="" placeholder="Full name">
-                </div>
-            </div>
-
-            <div class="row">
-                <label class="required" for="email">E-mail:</label>
-                <div class="form-input">
-                    <input id="email" name="email" size="30" type="text" value="" placeholder="Enter email address">
-                </div>
-            </div>
-
-            <div class="row">
-                <label class="required" for="radio">Gender</label>
-                <div class="form-input">
-                    <div class="radio-button">
-                    	<input type="radio" class="gender" name="gender" value="Male">Male
-                    	<input type="radio" class="gender" name="gender" value="female">female
-                    </div>
+                    <input id="name" name="name" type="text" placeholder="Full name">
                 </div>
             </div>
             <div class="row">
-                <label class="required" for="select">Select:</label>
+                <label for="email">E-mail:</label>
                 <div class="form-input">
-                    <div class="select-button">
-                        <select id="select" name="select">
-            				<option value="0">Please choose</option>
-            				<option value="1">Saab</option>
-            				<option value="2">Mercedes</option>
-            				<option value="3">Audi</option>
-            			</select>
-                    </div>
+                    <input id="email" name="email" type="text" placeholder="Enter email address">
                 </div>
             </div>
             <div class="row">
-                <div class="form-input form-checkbox">
+                <label>&nbsp;</label>
+                <div class="form-input">
                     <input class="submit" type="submit" value="Send email">
                 </div>
             </div>
         </form>
 	</div>
-    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
             //Add placeholder as a value
@@ -69,7 +96,6 @@
                     $(this).val( '' );
                 }
             })
-
             //Clear value on Submit
             $('form').submit( function () {
                 $('input[type=text]').each( function() {
