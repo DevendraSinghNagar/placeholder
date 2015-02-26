@@ -84,26 +84,31 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
-            //Add placeholder as a value
-            $('input[type=text]').each( function() {
-                if( $(this).val() == '' && $(this).attr('placeholder') != undefined ) {
-                    $(this).val( $(this).attr('placeholder') );
-                }
-            });
-            //Clear value on focus
-            $('input[type=text]').focus( function () {
-                if( $(this).val() == $(this).attr('placeholder') ) {
-                    $(this).val( '' );
-                }
-            })
-            //Clear value on Submit
-            $('form').submit( function () {
-                $('input[type=text]').each( function() {
-                    if( $(this).val() == $(this).attr('placeholder') ) {
-                        $(this).val('');
-                    }
-                });
-            })
+            	var userAgent = navigator.userAgent.toLowerCase();
+            	// If the browser is IE and check the version number is lower than 10
+	            if (/msie/.test(userAgent) && 
+	                parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1]) <= 9) {
+	                //Add placeholder as a value
+	                $('input[type=text]').each( function() {
+	                    if( $(this).val() == '' && $(this).attr('placeholder') != undefined ) {
+	                        $(this).val( $(this).attr('placeholder') );
+	                    }
+	                });
+	                //Clear value on focus
+	                $('input[type=text]').focus( function () {
+	                    if( $(this).val() == $(this).attr('placeholder') ) {
+	                        $(this).val( '' );
+	                    }
+	                })
+	                //Clear value on Submit
+	                $('form').submit( function () {
+	                    $('input[type=text]').each( function() {
+	                        if( $(this).val() == $(this).attr('placeholder') ) {
+	                            $(this).val('');
+	                        }
+	                    });
+	                })
+	            }
 		});
 	</script>
 </body>
