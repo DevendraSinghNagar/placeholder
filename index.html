@@ -43,11 +43,14 @@
             float: left;
             width: 70%;
         }   
-        input[type="text"] {
+        input[type="text"],textarea {
             width: 95%;
             padding: 10px;
             border: 1px solid #4CBAA9;
             font-size: 14px;
+        }
+        textarea {
+            overflow: hidden;
         }
         input[type="submit"] {
             background-color: #ACEFE4;
@@ -74,6 +77,12 @@
                 </div>
             </div>
             <div class="row">
+                <label for="email">E-mail:</label>
+                <div class="form-input">
+                    <textarea type="text" placeholder="Message"></textarea>
+                </div>
+            </div>
+            <div class="row">
                 <label>&nbsp;</label>
                 <div class="form-input">
                     <input class="submit" type="submit" value="Send email">
@@ -83,32 +92,38 @@
 	</div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function(){
-            	var userAgent = navigator.userAgent.toLowerCase();
-            	// If the browser is IE and check the version number is lower than 10
-	            if (/msie/.test(userAgent) && 
-	                parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1]) <= 9) {
-	                //Add placeholder as a value
-	                $('input[type=text]').each( function() {
-	                    if( $(this).val() == '' && $(this).attr('placeholder') != undefined ) {
-	                        $(this).val( $(this).attr('placeholder') );
-	                    }
-	                });
-	                //Clear value on focus
-	                $('input[type=text]').focus( function () {
-	                    if( $(this).val() == $(this).attr('placeholder') ) {
-	                        $(this).val( '' );
-	                    }
-	                })
-	                //Clear value on Submit
-	                $('form').submit( function () {
-	                    $('input[type=text]').each( function() {
-	                        if( $(this).val() == $(this).attr('placeholder') ) {
-	                            $(this).val('');
-	                        }
-	                    });
-	                })
-	            }
+		$(function(){
+        	var userAgent = navigator.userAgent.toLowerCase();
+        	// If the browser is IE and check the version number is lower than 10
+            if (/msie/.test(userAgent) && 
+                parseFloat((userAgent.match(/.*(?:rv|ie)[\/: ](.+?)([ \);]|$)/) || [])[1]) <= 9) {
+                //Add placeholder as a value
+               /* $('[placeholder]').each( function() {
+                    if( $(this).val() == '' && $(this).attr('placeholder') != undefined ) {
+                        $(this).val( $(this).attr('placeholder') );
+                    }
+                });*/
+        
+                //Clear value on focus
+                $('[placeholder]').focus( function () {
+                    if( $(this).val() == $(this).attr('placeholder') ) {
+                        $(this).val( '' );
+                    }
+                }).blur( function() {  //Add placeholder as a value
+                    if( $(this).val() == '' && $(this).attr('placeholder') != undefined ) {
+                        $(this).val( $(this).attr('placeholder') );
+                    }
+                }).blur(); //Add value as a placeholder on page load and focus out
+
+                //Clear value on Form submit
+                $('form').submit( function () {
+                    $('[placeholder]').each( function() {
+                        if( $(this).val() == $(this).attr('placeholder') ) {
+                            $(this).val('');
+                        }
+                    });
+                })
+            }
 		});
 	</script>
 </body>
